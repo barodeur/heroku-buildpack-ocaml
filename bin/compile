@@ -4,11 +4,13 @@ set -eo pipefail
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+opam_version="2.1.4"
+
 if [[ ! -e $CACHE_DIR/bin/opam ]]; then
     echo "opam not cached, downloading"
-    wget https://github.com/ocaml/opam/releases/download/2.0.7/opam-2.0.7-x86_64-linux
+    wget https://github.com/ocaml/opam/releases/download/$opam_version/opam-$opam_version-x86_64-linux
     mkdir -p $CACHE_DIR/bin
-    install opam-2.0.7-x86_64-linux $CACHE_DIR/bin/opam
+    install opam-$opam_version-x86_64-linux $CACHE_DIR/bin/opam
 fi
 export PATH=$CACHE_DIR/bin:$PATH
 if [[ -e $CACHE_DIR/.opam ]]; then
