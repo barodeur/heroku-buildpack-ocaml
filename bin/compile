@@ -15,7 +15,7 @@ fi
 export PATH=$CACHE_DIR/bin:$PATH
 if [[ -e $CACHE_DIR/.opam ]]; then
     echo ".opam cached"
-    cp -r $CACHE_DIR/.opam ~/.opam
+    cp -r $CACHE_DIR/.opam /app/.opam
 else
     echo ".opam not cached, calling init"
     opam init --disable-sandboxing
@@ -31,16 +31,16 @@ eval $(opam env)
 echo "Building"
 dune build @install
 echo $BUILD_DIR
-dune install --prefix ~/_build
+dune install --prefix /app/_build
 if [[ -e $BUILD_DIR/Procfile ]]; then
     echo "procfile 1"
-    cp $BUILD_DIR/Procfile ~/Procfile
+    cp $BUILD_DIR/Procfile /app/Procfile
 fi
 rm -rf $BUILD_DIR
-mv ~/_build $BUILD_DIR
-if [[ -e ~/Procfile ]]; then
+mv /app/_build $BUILD_DIR
+if [[ -e /app/Procfile ]]; then
     echo "procfile 2"
-    mv ~/Procfile $BUILD_DIR/Procfile
+    mv /app/Procfile $BUILD_DIR/Procfile
 fi
 echo "Copying .opam"
-rm -rf $CACHE_DIR/.opam && cp -r ~/.opam $CACHE_DIR/.opam
+rm -rf $CACHE_DIR/.opam && cp -r /app/.opam $CACHE_DIR/.opam
