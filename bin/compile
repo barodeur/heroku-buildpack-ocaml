@@ -30,13 +30,5 @@ echo "Building"
 dune build @install
 echo $BUILD_DIR
 dune install --prefix /app/_build
-if [[ -e $BUILD_DIR/Procfile ]]; then
-    echo "procfile 1"
-    cp $BUILD_DIR/Procfile /app/Procfile
-fi
 rm -rf $BUILD_DIR/*
 mv /app/_build/* $BUILD_DIR
-if [[ -e /app/Procfile ]]; then
-    echo "procfile 2"
-    mv /app/Procfile $BUILD_DIR/Procfile
-fi
