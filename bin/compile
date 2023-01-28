@@ -44,3 +44,4 @@ if [[ -e /app/Procfile ]]; then
 fi
 echo "Copying .opam"
 rm -rf $CACHE_DIR/.opam && cp -r ~/.opam $CACHE_DIR/.opam
+rm -rf ~/.opam
