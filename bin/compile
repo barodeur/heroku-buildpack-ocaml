@@ -13,7 +13,6 @@ if [[ ! -e $CACHE_DIR/bin/opam ]]; then
     install opam-$opam_version-x86_64-linux $CACHE_DIR/bin/opam
 fi
 export PATH=$CACHE_DIR/bin:$PATH
-mkdir -p $CACHE_DIR/.opam
 export OPAMROOT=$CACHE_DIR/.opam
 if [[ ! -e $CACHE_DIR/.opam ]]; then
     echo ".opam not initialized, calling init"
